@@ -30,6 +30,7 @@ num_sectors = num_bytes // 4
 points = []
 colours = []
 
+# Get point coordinates and colours from the hash digest
 point_bytes = byte_digest[:num_sectors*2]
 for i in range(num_sectors):
     x_coord = point_bytes[i*2]
@@ -47,6 +48,7 @@ for i in range(num_sectors):
 for i in range(num_sectors):
     print(f"Sector {i+1}: Point={points[i]}, Colour={colours[i]}")
 
+# Create image
 image = Image.new("RGB", (256, 256), (255, 255, 255))
 
 for x in range(256):
