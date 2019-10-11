@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 #==========================================
 # Author: Will Fenton
 # Date: October 11 2019
@@ -10,7 +11,7 @@ import sys
 
 #==========================================
 
-if len(sys.argv) != 1:
+if len(sys.argv) != 2:
     raise Exception("Pass in a string argument")
 
 string = sys.argv[1]
