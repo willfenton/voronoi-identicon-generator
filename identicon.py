@@ -21,7 +21,7 @@ chars = [' ', 'x', 'o', '@', '#', '%', '*', '+', '~', '=', '&', '<', '>', '?', '
 
 print()
 print(f"String: {string}")
-print(f"SHA-256 Hash: {hash_value}, {len(hash_value)}")
+print(f"SHA-256 Hash: {hash_value}")
 print(" -------------------")
 for i in range(8):
     print(' | ', end='')
