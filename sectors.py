@@ -10,6 +10,9 @@ import sys
 
 #==========================================
 
+if len(sys.argv) != 1:
+    raise Exception("Pass in a string argument")
+
 string = sys.argv[1]
 
 hash = hashlib.sha256()
