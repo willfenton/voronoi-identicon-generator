@@ -4,7 +4,7 @@
 #==========================================
 
 import hashlib
-from PIL import Image
+from PIL import Image, ImageFilter
 from bitstring import BitArray
 import sys
 
@@ -63,5 +63,7 @@ for x in range(256):
                 min_squared_dist = squared_dist
                 colour = colours[i]
         image.putpixel((x, y), colour)
+
+image = image.filter(ImageFilter.BoxBlur(2))
 
 image.save(f"{string}.png", "PNG")
