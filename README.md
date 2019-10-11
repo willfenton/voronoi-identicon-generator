@@ -18,7 +18,7 @@ This is a short one-day project to make an Identicon generator (see [drhus/aweso
 + uses nearest neighbors algorithm to generate an unique image based on a SHA-256 hash
 
 `sectors.py`
-+ same as sectors_rgb.py but uses HSV for nicer colors (and some nice features like command line input)
++ same as sectors_rgb.py but uses HSV for nicer colors (and some nice features like command line input and SHA-512)
 + Uasge: `./sectors.py <string>...`
 + images are saved in `output/` folder
 

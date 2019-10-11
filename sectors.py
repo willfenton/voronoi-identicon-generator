@@ -20,14 +20,14 @@ if len(sys.argv) == 1:
     raise Exception("Pass in a string argument")
 
 def img(string):
-    hash = hashlib.sha256()
+    hash = hashlib.sha512()
 
     hash.update(bytes(string, encoding="utf-8"))
 
     hex_digest = hash.hexdigest()
 
     print(f"String: {string}")
-    print(f"SHA-256 Hash: {hex_digest}")
+    print(f"SHA-512 Hash: {hex_digest}")
 
     byte_digest = hash.digest()
 
