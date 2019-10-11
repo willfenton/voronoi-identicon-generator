@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 #==========================================
 # Author: Will Fenton
 # Date: October 11 2019
@@ -9,6 +10,9 @@ from bitstring import BitArray
 import sys
 
 #==========================================
+
+if len(sys.argv) != 2:
+    raise Exception("Pass in a string argument")
 
 string = sys.argv[1]
 
