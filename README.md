@@ -3,7 +3,8 @@
 
 This is a short one-day project to make an Identicon generator (see [drhus/awesome-identicons](https://github.com/drhus/awesome-identicons)).
 
-Versions:
+### Versions:
+
 `identicon.py`
 + outputs a simple ascii image based on a SHA-256 hash
 
