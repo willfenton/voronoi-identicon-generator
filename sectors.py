@@ -76,6 +76,9 @@ def img(string):
     image = image.filter(ImageFilter.BoxBlur(2))
     image.save(f"output/{string}.png", "PNG")
 
-os.mkdir("output")
+try:
+    os.mkdir("output")
+except FileExistsError:
+    pass
 for string in sys.argv[1:]:
     img(string)

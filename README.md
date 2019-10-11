@@ -3,7 +3,7 @@
 
 This is a short one-day project to make an Identicon generator (see [drhus/awesome-identicons](https://github.com/drhus/awesome-identicons)).
 
-### Versions:
+### Versions
 
 `identicon.py`
 + outputs a simple ascii image based on a SHA-256 hash
@@ -21,3 +21,18 @@ This is a short one-day project to make an Identicon generator (see [drhus/aweso
 + same as sectors_rgb.py but uses HSV for nicer colors (and some nice features like command line input)
 + Uasge: `./sectors.py <string>...`
 + images are saved in `output/` folder
+
+
+### Examples
+
+gino:
+![gino.png](gino.png "gino.png")
+
+will:
+![will.png](will.png "will.png")
+
+yeet:
+![yeet.png](yeet.png "yeet.png")
+
+💯:
+![💯.png](💯.png "💯.png")
