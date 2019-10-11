@@ -45,7 +45,7 @@ for i in range(num_sectors):
     colours.append((red.uint * 8, green.uint * 4, blue.uint * 8))
 
 for i in range(num_sectors):
-    print(f"Sector {i}: Point={points[i]}, Colour={colours[i]}")
+    print(f"Sector {i+1}: Point={points[i]}, Colour={colours[i]}")
 
 image = Image.new("RGB", (256, 256), (255, 255, 255))
 
