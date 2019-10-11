@@ -6,10 +6,11 @@
 import hashlib
 from PIL import Image
 from bitstring import BitArray
+import sys
 
 #==========================================
 
-string = "willfenton"
+string = sys.argv[1]
 
 hash = hashlib.sha256()
 
