@@ -19,7 +19,7 @@ This is a short one-day project to make an Identicon generator (see [drhus/aweso
 
 `sectors.py`
 + same as sectors_rgb.py but uses HSV for nicer colors (and some nice features like command line input and SHA-512)
-+ Uasge: `./sectors.py <string>...`
++ Uasge: `./sectors.py [options] <string>...`, can also read from standard input
 + images are saved in `output/` folder
 
 
