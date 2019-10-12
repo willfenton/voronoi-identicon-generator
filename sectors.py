@@ -15,11 +15,12 @@ from bitstring import BitArray
 
 def printUsage():
     sys.stderr.write(
-        "Usage: ./sectors.py [options]\n"
+        "Usage: ./sectors.py [options] <string>...\n"
         "Options:\n"
-        "  --string         |-s: the string to hash \n"
-        "  --hash-function  |-f: the hash function to use ( MD5 | SHA-256 | [SHA-512] ) \n"
-        "  --help           |-h: display this command\n")
+        "  --size           | -s: the size of the image in pixels, creates square image\n"
+        "  --blur           | -b: the blur of the image\n"
+        "  --hash-function  | -f: the hash function to use ( MD5 | SHA-256 | [SHA-512] ) \n"
+        "  --help           | -h: display this command\n")
     
 #==========================================
 
@@ -31,27 +32,30 @@ def main():
 
     # read options
     try:
-        options = "s:f:h:"
-        longOptions = ["hash-function=", "string=", "help"]
+        options = "f:h:s:b"
+        longOptions = ["hash-function", "size", "blur", "help"]
         opts, args = getopt.getopt(sys.argv[1:], options, longOptions)
     except getopt.GetoptError:
         printUsage()
         sys.exit(1)
 
-    string = ""
     hash_function = "SHA-512"
+    size = 256
+    blur = 2
 
     # parse options
     for o, v in opts:
-        if o in ("-s", "--string"):
-            string = v
-        if o in ("-f", "--hash-function"):
-            hash_function = v
-        elif o in ("-h", "--help"):
+        if o in ("-h", "--help"):
             printUsage()
             sys.exit()
+        if o in ("-f", "--hash-function"):
+            hash_function = v
+        if o in ("-s", "--size"):
+            size = int(v)
+        if o in ("-b", "--blur"):
+            blur = int(v)
 
-    if string == "":
+    if len(args) == 0:
         raise Exception("Need to specify a string")
 
     try:
@@ -59,17 +63,18 @@ def main():
     except FileExistsError:
         pass
 
-    generate_identicon(string, hash_function)
+    for string in args:
+        generate_identicon(string, hash_function, size, blur)
 
-    
-    
+ 
+
 #==========================================
 
 def map_val(val, min, max):
     # returns val of 0-255 between min-max
     return int((val / 255) * (max - min) + min)
 
-def generate_identicon(string, hash_function):
+def generate_identicon(string, hash_function, size, blur):
 
     if hash_function == "MD5":
         hash = hashlib.md5()
@@ -97,7 +102,7 @@ def generate_identicon(string, hash_function):
     points = []
     colours = []
 
-    saturation = map_val(int(byte_digest[-1]), 180, 220)
+    saturation = map_val(int(byte_digest[-1]), 160, 210)
     brightness = map_val(int(byte_digest[-2]), 200, 255)
 
     # Get point coordinates and colours from the hash digest
@@ -105,7 +110,7 @@ def generate_identicon(string, hash_function):
     for i in range(num_sectors):
         x_coord = point_bytes[i*2]
         y_coord = point_bytes[(i*2)+1]
-        points.append((x_coord, y_coord))
+        points.append((map_val(x_coord, 0, size), map_val(y_coord, 0, size)))
 
     colour_bytes = byte_digest[num_sectors*2:num_sectors*3]
     for i in range(num_sectors):
@@ -116,10 +121,10 @@ def generate_identicon(string, hash_function):
         # print(f"Sector {i+1}: Point={points[i]}, Colour={colours[i]}")
 
     # Create image
-    image = Image.new("HSV", (256, 256), (255, 255, 255))
+    image = Image.new("HSV", (size, size), (255, 255, 255))
 
-    for x in range(256):
-        for y in range(256):
+    for x in range(size):
+        for y in range(size):
             min_squared_dist = (256 ** 2) * 2
             colour = (0, 0, 0)
             for i in range(num_sectors):
@@ -131,7 +136,7 @@ def generate_identicon(string, hash_function):
             image.putpixel((x, y), colour)
 
     image = image.convert("RGB")
-    image = image.filter(ImageFilter.BoxBlur(2))
+    image = image.filter(ImageFilter.BoxBlur(blur))
     image.save(f"output/{string}.png", "PNG")
 
     print(f"Identicon saved to ./output/{string}.png")
