@@ -5,29 +5,87 @@
 #==========================================
 
 import hashlib
-from PIL import Image, ImageFilter
-from bitstring import BitArray
 import sys
 import os
+import getopt
+from PIL import Image, ImageFilter
+from bitstring import BitArray
 
+#==========================================
+
+def printUsage():
+    sys.stderr.write(
+        "Usage: ./sectors.py [options]\n"
+        "Options:\n"
+        "  --string         |-s: the string to hash \n"
+        "  --hash-function  |-f: the hash function to use ( MD5 | SHA-256 | [SHA-512] ) \n"
+        "  --help           |-h: display this command\n")
+    
+#==========================================
+
+def main():
+
+    if len(sys.argv) == 1:
+        printUsage()
+        sys.exit(1)
+
+    # read options
+    try:
+        options = "s:f:h:"
+        longOptions = ["hash-function=", "string=", "help"]
+        opts, args = getopt.getopt(sys.argv[1:], options, longOptions)
+    except getopt.GetoptError:
+        printUsage()
+        sys.exit(1)
+
+    string = ""
+    hash_function = "SHA-512"
+
+    # parse options
+    for o, v in opts:
+        if o in ("-s", "--string"):
+            string = v
+        if o in ("-f", "--hash-function"):
+            hash_function = v
+        elif o in ("-h", "--help"):
+            printUsage()
+            sys.exit()
+
+    if string == "":
+        raise Exception("Need to specify a string")
+
+    try:
+        os.mkdir("output")
+    except FileExistsError:
+        pass
+
+    generate_identicon(string, hash_function)
+
+    
+    
 #==========================================
 
 def map_val(val, min, max):
     # returns val of 0-255 between min-max
     return int((val / 255) * (max - min) + min)
 
-if len(sys.argv) == 1:
-    raise Exception("Pass in a string argument")
+def generate_identicon(string, hash_function):
 
-def img(string):
-    hash = hashlib.sha512()
+    if hash_function == "MD5":
+        hash = hashlib.md5()
+    elif hash_function == "SHA-256":
+        hash = hashlib.sha256()
+    elif hash_function == "SHA-512":
+        hash = hashlib.sha512()
+    else:
+        raise Exception("Invalid hash function")
 
     hash.update(bytes(string, encoding="utf-8"))
 
     hex_digest = hash.hexdigest()
 
     print(f"String: {string}")
-    print(f"SHA-512 Hash: {hex_digest}")
+    print(f"{hash_function} Hash: {hex_digest}")
 
     byte_digest = hash.digest()
 
@@ -54,8 +112,8 @@ def img(string):
         c = colour_bytes[i]
         colours.append((int(c), saturation, brightness))
 
-    for i in range(num_sectors):
-        print(f"Sector {i+1}: Point={points[i]}, Colour={colours[i]}")
+    # for i in range(num_sectors):
+        # print(f"Sector {i+1}: Point={points[i]}, Colour={colours[i]}")
 
     # Create image
     image = Image.new("HSV", (256, 256), (255, 255, 255))
@@ -76,9 +134,11 @@ def img(string):
     image = image.filter(ImageFilter.BoxBlur(2))
     image.save(f"output/{string}.png", "PNG")
 
-try:
-    os.mkdir("output")
-except FileExistsError:
-    pass
-for string in sys.argv[1:]:
-    img(string)
+    print(f"Identicon saved to ./output/{string}.png")
+
+#==========================================
+
+if __name__ == "__main__":
+    main()
+
+#==========================================
