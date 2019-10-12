@@ -4,12 +4,12 @@
 # Date: October 11 2019
 #==========================================
 
-import hashlib
-import sys
 import os
+import sys
 import getopt
-from PIL import Image, ImageFilter
+import hashlib
 from bitstring import BitArray
+from PIL import Image, ImageFilter
 
 #==========================================
 
@@ -18,12 +18,11 @@ def printUsage():
         "Usage: ./sectors.py [options] <string>...\n"
         "Options:\n"
         "  (-s | --size) <pixels>       the size of the image in pixels, creates square image [default: 256]\n"
+        "                               must be a multiple of 256\n"
         "  (-b | --blur) <strength>     the blur strength of the image [default: 2]\n"
         "  (-f | --hash-function) <MD5 | SHA-256 | SHA 512>\n"
         "                               hash function to use [default: SHA-512]\n"
-        "  -h, --help                   show this screen\n")
-
-#==========================================
+        "  (-h, --help)                 show this screen\n")
 
 def main():
 
@@ -58,6 +57,8 @@ def main():
             hash_function = v
         if o in ("-s", "--size"):
             size = int(v)
+            if size % 256 != 0:
+                raise Exception("Size must be a multiple of 256")
         if o in ("-b", "--blur"):
             blur = int(v)
 
@@ -74,8 +75,6 @@ def main():
         generate_identicon(string, hash_function, size, blur)
     for string in args:
         generate_identicon(string, hash_function, size, blur)
-
-
 
 #==========================================
 
@@ -134,7 +133,7 @@ def generate_identicon(string, hash_function, size, blur):
 
     for x in range(size):
         for y in range(size):
-            min_squared_dist = (256 ** 2) * 2
+            min_squared_dist = (size ** 2) * 2
             colour = (0, 0, 0)
             for i in range(num_sectors):
                 point = points[i]
