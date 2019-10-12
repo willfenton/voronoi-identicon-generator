@@ -26,18 +26,18 @@ This is a short one-day project to make an Identicon generator (see [drhus/aweso
 ### Examples
 #### sectors.py
 
-gino:
+`gino`
 
 ![gino.png](examples/gino.png "gino.png")
 
-will:
+`will`
 
 ![will.png](examples/will.png "will.png")
 
-yeet:
+`yeet`
 
 ![yeet.png](examples/yeet.png "yeet.png")
 
-💯:
+`💯`
 
 ![💯.png](examples/💯.png "💯.png")
