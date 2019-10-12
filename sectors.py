@@ -17,23 +17,29 @@ def printUsage():
     sys.stderr.write(
         "Usage: ./sectors.py [options] <string>...\n"
         "Options:\n"
-        "  --size           | -s: the size of the image in pixels, creates square image\n"
-        "  --blur           | -b: the blur of the image\n"
-        "  --hash-function  | -f: the hash function to use ( MD5 | SHA-256 | [SHA-512] ) \n"
-        "  --help           | -h: display this command\n")
-    
+        "  (-s | --size) <pixels>       the size of the image in pixels, creates square image [default: 256]\n"
+        "  (-b | --blur) <strength>     the blur strength of the image [default: 2]\n"
+        "  (-f | --hash-function) <MD5 | SHA-256 | SHA 512>\n"
+        "                               hash function to use [default: SHA-512]\n"
+        "  -h, --help                   show this screen\n")
+
 #==========================================
 
 def main():
 
-    if len(sys.argv) == 1:
+    pipe = []
+    if not sys.stdin.isatty():
+        pipe = sys.stdin.readlines()
+    pipe = [x.strip() for x in pipe]
+
+    if len(sys.argv) == 1 and len(pipe) == 0:
         printUsage()
         sys.exit(1)
 
     # read options
     try:
-        options = "f:h:s:b"
-        longOptions = ["hash-function", "size", "blur", "help"]
+        options = "hf:s:b:"
+        longOptions = ["help", "hash-function=", "size=", "blur="]
         opts, args = getopt.getopt(sys.argv[1:], options, longOptions)
     except getopt.GetoptError:
         printUsage()
@@ -55,7 +61,7 @@ def main():
         if o in ("-b", "--blur"):
             blur = int(v)
 
-    if len(args) == 0:
+    if len(args) == 0 and len(pipe) == 0:
         raise Exception("Need to specify a string")
 
     try:
@@ -63,10 +69,13 @@ def main():
     except FileExistsError:
         pass
 
+    # generate identicons for all strings
+    for string in pipe:
+        generate_identicon(string, hash_function, size, blur)
     for string in args:
         generate_identicon(string, hash_function, size, blur)
 
- 
+
 
 #==========================================
 
