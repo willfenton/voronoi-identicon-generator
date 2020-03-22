@@ -14,17 +14,15 @@ submitButton.onclick = function () {
         alert("String cannot contain '/'");
     }
     else {
-        console.log(stringSelect.value, sizeSelect.value, hashSelect.value, blurSelect.value);
-        let apiUrl = `/identicons/${hashSelect.value}/${sizeSelect.value}/${blurSelect.value}/${stringSelect.value}`;
-        console.log(apiUrl);
+        let apiUrl = `identicon/identicons/${hashSelect.value}/${sizeSelect.value}/${blurSelect.value}/${stringSelect.value}`;
 
-        imageElement.src = "static/loading.gif"
+        imageElement.src = "identicon/static/loading.gif"
         downloadButton.style.display = "none";
 
         fetch(apiUrl).then((response) => {
             return response.json();
         }).then((json) => {
-            imageElement.src = json["image_url"];
+            imageElement.src = "identicon/" + json["image_url"];
 
             downloadButton.style.display = "block";
             downloadButton.href = imageElement.src;

@@ -9,30 +9,30 @@
 
     <!-- icons -->
     <link rel="icon" type="image/png" sizes="96x96"
-        href="{{ url_for('static', filename='favicon/favicon-96x96.png') }}">
+        href="https://willfenton.dev/identicon/static/favicon/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="32x32"
-        href="{{ url_for('static', filename='favicon/favicon-32x32.png') }}">
+        href="https://willfenton.dev/identicon/static/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16"
-        href="{{ url_for('static', filename='favicon/favicon-16x16.png') }}">
+        href="https://willfenton.dev/identicon/static/favicon/favicon-16x16.png">
 
     <!-- fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 
     <!-- css -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://willfenton.dev/identicon/static/style.css">
     <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
 
     <!-- js -->
-    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+    <script src="https://willfenton.dev/identicon/static/script.js" defer></script>
 </head>
 
 <body>
     <div class="header bg-primary">
-        <img class="logo" src="{{ url_for('static', filename='logo.png') }}">
+        <img class="logo" src="https://willfenton.dev/identicon/static/logo.png">
         <h1 class="title">Identicon Generator</h1>
     </div>
     <div class="page-body">
-        <img class="identicon-image" src="{{ url_for('static', filename='placeholder.png') }}" alt="Identicon">
+        <img class="identicon-image" src="https://willfenton.dev/identicon/static/placeholder.png" alt="Identicon">
         <div class="form-group">
             <label for="string-select">Identicon String</label>
             <input required class="form-input" type="text" name="Identicon String" id="string-select">

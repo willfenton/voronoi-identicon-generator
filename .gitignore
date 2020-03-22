@@ -2,7 +2,7 @@
 .ccls-cache
 output
 
-webapp/static/images/*
+identicon/static/images/*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

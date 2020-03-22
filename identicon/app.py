@@ -84,12 +84,12 @@ def generate_identicon(string, hash_function="SHA-512", size=512, blur=0):
     image.save(image_path, "PNG")
 
 
-@app.route("/")
+@app.route("/identicon")
 def index():
     return render_template("index.html")
 
 
-@app.route("/identicons/<string:hash_algorithm>/<int:image_size>/<int:blur_strength>/<string:identicon_string>")
+@app.route("/identicon/identicons/<string:hash_algorithm>/<int:image_size>/<int:blur_strength>/<string:identicon_string>")
 def get_identicon(hash_algorithm, image_size, blur_strength, identicon_string):
     identicon_path = f"static/images/{hash_algorithm}/{image_size}/{blur_strength}/{identicon_string}.png"
 
