@@ -96,31 +96,9 @@ def get_identicon(hash_algorithm, image_size, blur_strength, identicon_string):
     if not os.path.exists(identicon_path):
         generate_identicon(identicon_string, hash_algorithm, image_size, blur_strength)
 
-    # return redirect(url_for("static", filename=f"images/{identicon_string}.png"))
-    # return send_file(identicon_path, mimetype="image/png")
     return json.dumps({
         "image_url": identicon_path
     })
-
-
-# @app.route("/api/predict/<string:category>/<int:index>")
-# def ai_predict(category, index):
-#     learner = load_learner(Path(), "model.pkl")
-
-#     # TODO: error handling
-#     path = Path()/"static/images"/category/f"{index}.jpg"
-#     img = open_image(path)
-
-#     pred_class,pred_idx,outputs = learner.predict(img)
-
-#     response_json = {
-#         "predictions": {}
-#     }
-
-#     for i in range(len(outputs)):
-#         response_json["predictions"][learner.data.classes[i]] = float(outputs[i])
-
-#     return json.dumps(response_json)
 
 
 if __name__ == "__main__":

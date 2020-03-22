@@ -28,9 +28,6 @@ submitButton.onclick = function () {
 
             downloadButton.style.display = "block";
             downloadButton.href = imageElement.src;
-            // downloadButton.onclick = function() {
-            //     window.open(imageElement.src);
-            // }
         });
     }
 }

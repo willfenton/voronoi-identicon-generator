@@ -21,7 +21,7 @@
     <!-- css -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
-    
+
     <!-- js -->
     <script src="{{ url_for('static', filename='script.js') }}" defer></script>
 </head>
@@ -58,7 +58,8 @@
                 <option value="4">4</option>
                 <option value="5">5</option>
             </select>
-            <button id="generate-button" class="btn btn-primary input-group-btn p-centered submit-button">Generate</button>
+            <button id="generate-button"
+                class="btn btn-primary input-group-btn p-centered submit-button">Generate</button>
         </div>
         <a download href="" id="download-button">Download</a>
     </div>
@@ -69,39 +70,3 @@
 </body>
 
 </html>
-
-<!-- <div class="prediction">
-    <div class="image-div">
-    </div>
-    <div class="buttons" id="prediction-buttons">
-        <button onclick="pred(false)" class="choice-button btn btn-primary">Benign</button>
-        <button onclick="pred(true)" class="choice-button btn btn-primary">Malignant</button>
-    </div>
-    <div class="results" id="prediction-results">
-        <button onclick="next()" class="btn">Next</button>
-        <p class="pred-text human-prediction" id="human-pred-text"></p>
-        <p class="pred-text ai-prediction" id="ai-pred-text"></p>
-        <p class="pred-text ground-truth" id="ground-truth-text"></p>
-    </div>
-</div>
-<div class="divider-vert"></div>
-<div class="sidebar">
-    <h1>Statistics</h1>
-    <div class="divider text-center"></div>
-    <div class="stats">
-        <h2>Human</h2>
-        <p id="human-accuracy"></p>
-        <p id="human-correct"></p>
-        <p id="human-incorrect"></p>
-        <div class="divider text-center"></div>
-        <h2>AI</h2>
-        <p id="ai-accuracy"></p>
-        <p id="ai-correct"></p>
-        <p id="ai-incorrect"></p>
-        <div class="divider text-center"></div>
-        <h2>General</h2>
-        <p id="count"></p>
-    </div>
-    <div class="divider text-center"></div>
-    <button onclick="reset()" class="btn">Reset</button>
-</div> -->
