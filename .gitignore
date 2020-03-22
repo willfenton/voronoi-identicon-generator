@@ -1,5 +1,8 @@
 .vscode
+.ccls-cache
 output
+
+webapp/static/images/*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
