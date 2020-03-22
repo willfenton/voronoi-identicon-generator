@@ -16,6 +16,7 @@ This is a short one-day project to make an Identicon generator (see [drhus/aweso
 
 `sectors_rgb.py`
 + uses nearest neighbors algorithm to generate an unique image based on a SHA-256 hash
++ (16/12/19) apparently we convergently developed a Voronoi diagram algorithm https://en.wikipedia.org/wiki/Voronoi_diagram
 
 `sectors.py`
 + same as sectors_rgb.py but uses HSV for nicer colors (and some nice features like command line input and SHA-512)
@@ -26,18 +27,18 @@ This is a short one-day project to make an Identicon generator (see [drhus/aweso
 ### Examples
 #### sectors.py
 
-gino:
+`gino`
 
 ![gino.png](examples/gino.png "gino.png")
 
-will:
+`will`
 
 ![will.png](examples/will.png "will.png")
 
-yeet:
+`yeet`
 
 ![yeet.png](examples/yeet.png "yeet.png")
 
-💯:
+`💯`
 
 ![💯.png](examples/💯.png "💯.png")
