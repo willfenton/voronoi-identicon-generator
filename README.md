@@ -1,4 +1,7 @@
 # Identicon
+
+## [Demo](https://willfenton.dev/identicon)
+
 ## Authors: Will Fenton & Giancarlo Pernudi Segura
 
 This is a short one-day project to make an Identicon generator (see [drhus/awesome-identicons](https://github.com/drhus/awesome-identicons)).
