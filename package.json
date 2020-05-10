@@ -1,0 +1,29 @@
+{
+  "name": "voronoi-identicon-generator",
+  "version": "1.0.0",
+  "description": "Voronoi Diagram based Identicon generator",
+  "main": "index.js",
+  "scripts": {
+    "dev": "parcel src/index.html",
+    "build": "NODE_ENV=production parcel build src/index.html --public-url . --detailed-report",
+    "deploy": "NODE_DEBUG=gh-pages gh-pages -d dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/willfenton/voronoi-identicon-generator.git"
+  },
+  "author": "Will Fenton",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/willfenton/voronoi-identicon-generator/issues"
+  },
+  "homepage": "https://github.com/willfenton/voronoi-identicon-generator#readme",
+  "dependencies": {
+    "gh-pages": "^2.2.0",
+    "paper": "^0.12.4",
+    "parcel-bundler": "^1.12.4",
+    "parcel-plugin-clean-dist": "0.0.6",
+    "sass": "^1.26.5",
+    "typescript": "^3.8.3"
+  }
+}
