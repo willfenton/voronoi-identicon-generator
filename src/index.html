@@ -10,19 +10,40 @@
 
     <title>Voronoi Identicon Generator</title>
 
-    <link rel="icon" type="image/png" sizes="16x16" href="./favicon/favicon-16x16.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="./favicon/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="./images/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon/favicon-32x32.png">
 
     <!-- Code -->
     <script defer src="./index.ts"></script>
 
     <!-- Styles -->
     <link rel="stylesheet" href="./style.scss">
+
+    <!-- Spectre CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap">
 </head>
 
 <body>
-
+    <div class="header bg-primary">
+        <img class="logo" src="./images/logo.png">
+        <h1 class="title">Identicon Generator</h1>
+    </div>
+    <div class="page-body">
+        <img class="identicon-image" src="./images/placeholder.png" alt="Identicon">
+        <div class="form-group">
+            <label for="string-select">Identicon String</label>
+            <input required class="form-input" type="text" name="Identicon String" id="string-select">
+        </div>
+        <a download href="" id="download-button">Download</a>
+    </div>
+    <div class="footer">
+        <p>© Will Fenton, Giancarlo Pernudi Segura</p>
+        <a href="https://github.com/willfenton/voronoi-identicon-generator">GitHub</a>
+    </div>
 </body>
 
 </html>
