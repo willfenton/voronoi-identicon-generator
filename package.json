@@ -19,6 +19,8 @@
   },
   "homepage": "https://github.com/willfenton/voronoi-identicon-generator#readme",
   "dependencies": {
+    "@types/crypto-js": "^3.1.45",
+    "crypto-js": "^4.0.0",
     "gh-pages": "^2.2.0",
     "paper": "^0.12.4",
     "parcel-bundler": "^1.12.4",

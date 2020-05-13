@@ -83,7 +83,7 @@ TODO: Let the user close the Voronoi cells, do not do it automatically. Not only
 
 // ---------------------------------------------------------------------------
 
-export function Voronoi() {
+function Voronoi() {
     this.vertices = null;
     this.edges = null;
     this.cells = null;
@@ -94,6 +94,8 @@ export function Voronoi() {
     this.edgeJunkyard = [];
     this.cellJunkyard = [];
 }
+
+module.exports = Voronoi;
 
 // ---------------------------------------------------------------------------
 

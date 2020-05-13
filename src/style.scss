@@ -58,6 +58,15 @@ body {
     margin-bottom: 1em;
 }
 
+#canvas {
+    width: 25em;
+    height: 25em;
+    box-shadow: #00000044 0 0 8px;
+    border-radius: 3px;
+
+    margin-bottom: 1em;
+}
+
 .identicon-placeholder {
     width: 25em;
     height: 25em;
