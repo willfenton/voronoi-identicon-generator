@@ -134,15 +134,17 @@ function downloadIdenticon() {
     const dataUrl = canvas.toDataURL();
 
     // create an anchor tag which will download the identicon when clicked on
-    const downloadLink = document.createElement('a');
+    const downloadLink = document.createElement("a");
     downloadLink.href = dataUrl;
 
-    if (stringSelect.value == "") {
+    // delete non-alphanumeric characters
+    const name = stringSelect.value.replace(/[^a-z0-9]/gi, "").toLowerCase();
+
+    // set image filename
+    if (name == "") {
         downloadLink.download = "identicon.png";
     }
     else {
-        // replace non-alphanumeric characters with '_'
-        const name = stringSelect.value.replace(/[^a-z0-9]/gi, '_').toLowerCase();
         downloadLink.download = `identicon-${name}.png`;
     }
 
