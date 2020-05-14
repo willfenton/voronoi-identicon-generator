@@ -126,3 +126,28 @@ stringSelect.onkeyup = function () {
 
     generateDiagram(stringSelect.value);
 }
+
+downloadButton.onclick = downloadIdenticon;
+
+function downloadIdenticon() {
+    // get an url for the image data
+    const dataUrl = canvas.toDataURL();
+
+    // create an anchor tag which will download the identicon when clicked on
+    const downloadLink = document.createElement('a');
+    downloadLink.href = dataUrl;
+
+    if (stringSelect.value == "") {
+        downloadLink.download = "identicon.png";
+    }
+    else {
+        // replace non-alphanumeric characters with '_'
+        const name = stringSelect.value.replace(/[^a-z0-9]/gi, '_').toLowerCase();
+        downloadLink.download = `identicon-${name}.png`;
+    }
+
+    // click the anchor tag
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
+}
